@@ -7,8 +7,13 @@ def setup():
 
 """
 Note:
-Only 1 Touch Pad can be used at a time.
-Wrote read_all() to check which pad is activated when called.
+Since only 1 Touch Pad can be used at a time, I chose to create functions which respond to their individual Pads.
+I also thought that we may not know which pad is being used or may just want to check all the pads so I created 
+another function which would check for which pad was activated.
+
+Read_Pad#() functions are to be used to know if Pad# is ON/OFF for use in greater applications.
+
+Read_All() function would check for which Pad# is activated when called.
 """
 
 
