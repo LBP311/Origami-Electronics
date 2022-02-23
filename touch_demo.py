@@ -1,5 +1,9 @@
 import touch_sensor
 
+"""
+Calls all functions within Touch Sensor Library.
+"""
+
 touch_sensor.setup()
 
 touch_sensor.Read_Pad0()
