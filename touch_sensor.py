@@ -90,14 +90,14 @@ def Wait_All():
 	for pad in range(5):
 		Wait_Pad(pad)
 
-
-GPIO.add_event_detected(P0):
-	print("Detected 0")
-if GPIO.event_detected(P1):
-	print("Detected 1")
-if GPIO.event_detected(P2):
-	print("Detected 2")
-if GPIO.event_detected(P3):
-	print("Detected 3")
-if GPIO.event_detected(P4):
-	print("Detected 4")
+while True:
+	if GPIO.event_detected(P0):
+		print("Detected 0")
+	if GPIO.event_detected(P1):
+		print("Detected 1")
+	if GPIO.event_detected(P2):
+		print("Detected 2")
+	if GPIO.event_detected(P3):
+		print("Detected 3")
+	if GPIO.event_detected(P4):
+		print("Detected 4")
