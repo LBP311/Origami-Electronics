@@ -1,5 +1,6 @@
 from setuptools import setup
 
+
 setup(name='buzzer',
 	version='1.0',
 	description='Small Enclosed Piezo w/ Wires',
