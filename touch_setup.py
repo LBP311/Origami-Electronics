@@ -1,5 +1,6 @@
 from setuptools import setup
 
+
 setup(name='touch_sensor',
 	version='1.0',
 	description='5-Pad Capacitive Sensor Library',
