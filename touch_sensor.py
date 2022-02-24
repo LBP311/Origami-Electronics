@@ -21,8 +21,8 @@ def setup():
 
 """
 Note:
-Since only 1 Touch Pad can be used at a time, I chose to create functions which respond to their individual Pads.
-I also thought that we may not know which pad is being used or may just want to check all the pads so I created 
+Since only 1 Touch Pad can be used at a time, I chose to create a function which responds to the corresponding Pad.
+I also thought that we may not know which pad is being used or may just want to check all the pads so I created
 another function which would check for which pad was activated.
 
 Filled in functions for testing purposes.
@@ -31,70 +31,43 @@ Functions test for when the Pad is LOW.
 Attempted to touch multiple pads and as expected, only 1 pad can be used at any given time.
 
 
-Read_Pad#() functions are to be used to know if Pad# is ON/OFF for use in greater applications.
+Read_Pad() function is used to know if Pad# is ON/OFF for use in greater applications.
 
 Read_All() function would check for which Pad# is activated when called.
 """
 
 
-# Only read Touch Pad 0
-def Read_Pad0():
-	print("Touch Pad 0")
+# Read Pad#
+def Read_Pad(pad):
+	"""
+	Accepts pad # to read state.
+	Returns Pad state
+	State: 1 = Not Active
+	       0 = Active
+	       None = Incorrect Pad #
+	"""
 
-	if (GPIO.input(P0) == 0):
-		print("HIT")
-	else:
-		print("MISS")
-
-# Only read Touch Pad 1
-def Read_Pad1():
-	print("Touch Pad 1")
-
-	if (GPIO.input(P1) == 0):
-		print("HIT")
-	else:
-		print("MISS")
-
-# Only read Touch Pad 2
-def Read_Pad2():
-	print("Touch Pad 2")
-
-	if (GPIO.input(P2) == 0):
-		print("HIT")
-	else:
-		print("MISS")
-
-# Only read Touch Pad 3
-def Read_Pad3():
-	print("Touch Pad 3")
-
-	if (GPIO.input(P3) == 0):
-		print("HIT")
-	else:
-		print("MISS")
-
-# Only read Touch Pad 4
-def Read_Pad4():
-	print("Touch Pad 4")
-
-	if (GPIO.input(P4) == 0):
-		print("HIT")
-	else:
-		print("MISS")
+	if (pad == 0):
+		return GPIO.input(P0)
+	elif (pad == 1):
+		return GPIO.input(P1)
+	elif (pad == 2):
+		return GPIO.input(P2)
+	elif (pad == 3):
+		return GPIO.input(P3)
+	elif (pad == 4):
+		return GPIO.input(P4)
+	return None
 
 # Search for which pad is activated
 def Read_All():
-	print("All Pads")
+	"""
+	Reads all pad states.
+	Returns pad# of active pad.
+	If none are active, return None.
+	"""
 
-	if (GPIO.input(P0) == 0):
-		print("Pad 0")
-	elif (GPIO.input(P1) == 0):
-		print("Pad 1")
-	elif (GPIO.input(P2) == 0):
-		print("Pad 2")
-	elif (GPIO.input(P3) == 0):
-		print("Pad 3")
-	elif (GPIO.input(P4) == 0):
-		print("Pad 4")
-	else:
-		print("MISS")
+	for pad in range(5):
+		if (Read_Pad(pad) == 0):
+			return pad
+	return None
