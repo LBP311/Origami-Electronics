@@ -18,9 +18,8 @@ try:
 	touch_sensor.Wait_Pad(3)
 	touch_sensor.Wait_Pad(4)
 
-	while True:
-		if GPIO.event_detected(touch_sensor.P0):
-			print("Detected 0")
+#	while True:
+#		continue
 
 	"""
 		for i in range(6):
