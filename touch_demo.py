@@ -12,7 +12,17 @@ touch_sensor.setup()
 
 
 try:
+	touch_sensor.Wait_Pad(0)
+	touch_sensor.Wait_Pad(1)
+	touch_sensor.Wait_Pad(2)
+	touch_sensor.Wait_Pad(3)
+	touch_sensor.Wait_Pad(4)
+
 	while True:
+		if GPIO.event_detected(touch_sensor.P0):
+			print("Detected 0")
+
+	"""
 		for i in range(6):
 			pad = int(input("Enter Pad \#:"))
 
@@ -28,6 +38,7 @@ try:
 				print("Active Pad: " + str(active))
 			else:
 				print("None Active")
+	"""
 
 except KeyboardInterrupt:
 	GPIO.cleanup()
