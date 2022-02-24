@@ -5,6 +5,7 @@ import sys
 
 """
 Calls all functions within Touch Sensor Library.
+touch_sensor.py
 """
 
 touch_sensor.setup()
@@ -12,23 +13,21 @@ touch_sensor.setup()
 
 try:
 	while True:
-		touch_sensor.Read_Pad0()
-		time.sleep(1)
+		for i in range(6):
+			pad = int(input("Enter Pad \#:"))
 
-		touch_sensor.Read_Pad1()
-		time.sleep(1)
+			if (touch_sensor.Read_Pad(pad)):
+				print("Not Active")
+			else:
+				print("Active")
+			time.sleep(2)
 
-		touch_sensor.Read_Pad2()
-		time.sleep(1)
-
-		touch_sensor.Read_Pad3()
-		time.sleep(1)
-
-		touch_sensor.Read_Pad4()
-		time.sleep(1)
-
-		touch_sensor.Read_All()
-		time.sleep(1)
+			print("Read-All")
+			active = touch_sensor.Read_All()
+			if (active is not None):
+				print("Active Pad: " + str(active))
+			else:
+				print("None Active")
 
 except KeyboardInterrupt:
 	GPIO.cleanup()
