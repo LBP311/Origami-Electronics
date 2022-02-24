@@ -9,7 +9,6 @@ B_Pin = 13	# BCM 13 ; PWM 0
 
 pi.hardware_PWM(B_Pin, 5000, 500000)
 
-
 try:
 	while True:
 		continue
