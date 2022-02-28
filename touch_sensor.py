@@ -1,23 +1,18 @@
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 
-P0 = 1
-P1 = 12
-P2 = 16
-P3 = 20
-P4 = 21
+#Pins= [Pad0, Pad1, Pad2, Pad3, Pad4]
+PADS = [24, 23, 18, 15, 14]	# Touch Pad BCM Pins ; Use NoneType if Pad is not in use
 
 def setup():
-	print("All peripherals and sensors have been set up successfully!")
+	global PADS
 
-	GPIO.setup(P0, GPIO.IN)
-	GPIO.setup(P1, GPIO.IN)
-	GPIO.setup(P2, GPIO.IN)
-	GPIO.setup(P3, GPIO.IN)
-	GPIO.setup(P4, GPIO.IN)
+	for pin in PADS:
+		if (pin is not None):
+			GPIO.setup(pin, GPIO.IN)
 
+	print("All pins have been set up successfully!")
 	return True
-
 
 """
 Note:
@@ -31,32 +26,29 @@ Functions test for when the Pad is LOW.
 Attempted to touch multiple pads and as expected, only 1 pad can be used at any given time.
 
 
-Read_Pad() function is used to know if Pad# is ON/OFF for use in greater applications.
+Read_Pad(input) function is used to know if Pad# is ON/OFF for use in greater applications.
 
 Read_All() function would check for which Pad# is activated when called.
+
+Wait_All() function is used to implement interrupts for all the Touch Pads.
+
+Wait_Pad(input) functin is used to implement an interrupt for the specified Touch Pad.
 """
 
 
-# Read Pad#
-def Read_Pad(pad):
+# Read State of Pad#
+def Read_Pad(input):
 	"""
 	Accepts pad # to read state.
 	Returns Pad state
 	State: 1 = Not Active
 	       0 = Active
-	       None = Incorrect Pad #
+	       None = Incorrect Pad # / Pad not setup
 	"""
+	global PADS
 
-	if (pad == 0):
-		return GPIO.input(P0)
-	elif (pad == 1):
-		return GPIO.input(P1)
-	elif (pad == 2):
-		return GPIO.input(P2)
-	elif (pad == 3):
-		return GPIO.input(P3)
-	elif (pad == 4):
-		return GPIO.input(P4)
+	if (PADS[input] is not None):
+		return GPIO.input(PADS[input])
 	return None
 
 # Search for which pad is activated
@@ -73,31 +65,19 @@ def Read_All():
 	return None
 
 # Create Interrupt for Pad#
-def Wait_Pad(pad):
-	if (pad == 0):
-		GPIO.add_event_detect(P0, GPIO.FALLING)
-	elif (pad == 1):
-		GPIO.add_event_detect(P1, GPIO.FALLING)
-	elif (pad == 2):
-		GPIO.add_event_detect(P2, GPIO.FALLING)
-	elif (pad == 3):
-		GPIO.add_event_detect(P3, GPIO.FALLING)
-	elif (pad == 4):
-		GPIO.add_event_detect(P4, GPIO.FALLING)
+def Wait_Pad(input):
+	global PADS
+
+	if (PADS[input] is not None):
+		GPIO.add_event_detect(PADS[input], GPIO.FALLING)
+		print("Pad Interrupt " + str(input) + " setup correctly!")
+		return True
+	print("Touch Pad " + str(input) + " is not setup...")
+	return False
+
 
 # Create Interrupts for all Pads
 def Wait_All():
 	for pad in range(5):
 		Wait_Pad(pad)
-
-while True:
-	if GPIO.event_detected(P0):
-		print("Detected 0")
-	if GPIO.event_detected(P1):
-		print("Detected 1")
-	if GPIO.event_detected(P2):
-		print("Detected 2")
-	if GPIO.event_detected(P3):
-		print("Detected 3")
-	if GPIO.event_detected(P4):
-		print("Detected 4")
+	return True
