@@ -9,7 +9,6 @@ from Songs import *
 pi = pigpio.pi()
 GPIO.setmode(GPIO.BCM)
 
-
 """===========___Global Variables___==========="""
 
 """___Touch Sensor___"""
