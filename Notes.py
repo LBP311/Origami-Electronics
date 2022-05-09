@@ -6,7 +6,6 @@ There are 9 pitches/octaves in music. Octave 0 goes below 20Hz so it will be exc
 A6  = Note/Octave
 AS6 = Note Sharp/Octave
 """
-
 # Rest Note
 REST = 0
 # Octave 1
