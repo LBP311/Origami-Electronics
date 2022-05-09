@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Origami</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body style="transform: perspective(0px);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Origami-Electronics</h1>
+            </div>
+            <div class="col-md-6">
+                <nav class="navbar navbar-light navbar-expand-md">
+                    <div class="container-fluid"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse d-xl-flex justify-content-xl-end" id="navcol-1">
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link active" href="/templates/index">Home</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="/templates/origami">Origami</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Controls</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-md-12 offset-xl-0">
+                <h1 class="text-center">Controls</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="d-xl-flex justify-content-xl-center align-items-xl-center" method="post" style="text-align: center;">
+                    <h3>Enable/Disable Parts</h3><div class="form-check form-switch form-check-inline"><input id="formCheck-4" class="form-check-input" type="checkbox" name="VibState" value="1" {% if VibState %} checked {% endif %} /><label class="form-check-label" for="formCheck-4">Motor</label></div><div class="form-check form-switch form-check-inline"><input id="formCheck-1" class="form-check-input" type="checkbox" name="SongState" {% if SongState %} checked {% endif %} value="1" /><label class="form-check-label" for="formCheck-1">Song</label></div><div class="form-check form-switch form-check-inline"><input id="formCheck-5" class="form-check-input" type="checkbox" name="LED" {% if LED %} checked {% endif %} value="1" /><label class="form-check-label" for="formCheck-5">LED</label></div>
+                    <hr>
+                    <h3>Motor Intensity</h3><select class="form-select" style="text-align: center;" name="VibLevel">
+    {% for level in vib_levels %}
+    <option value="{{level['value']}}" {{'selected="selected"' if level['selected'] else ''}}>{{level['level']}}</option>
+    {% endfor %}
+</select>
+                    <hr>
+                    <h3>Select Song</h3><select class="form-select" name="Song" style="text-align: center;">
+    {% for song in songs %}
+    <option value="{{song['value']}}" {{'selected="selected"' if song['selected'] else ''}}>{{song['song']}}</option>
+    {% endfor %}
+    </select>
+                    <hr><button class="btn btn-primary btn-lg active" type="submit">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
