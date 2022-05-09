@@ -9,3 +9,4 @@ setup(name='buzzer',
 	url='https://github.com/LBP311/Origami-Electronics/',
 	py_modules=['buzzer', 'RPi.GPIO', 'pigpio'],
 	)
+
