@@ -8,3 +8,4 @@ setup(name='motor',
 	url='https://github.com/LBP311/Origami-Electronics/',
 	pymodules=['motor', 'RPi.GPIO', 'pigpio'],
 	)
+
